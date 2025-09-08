@@ -21,7 +21,7 @@ public class AnimationClip<T> : IAnimation
         get
         {
             var (_, tweenMaxProgress) = Tween.Evaluate(1f);
-            if (Controller.Progress >= tweenMaxProgress) return true;
+            if (Controller.Progress >= tweenMaxProgress && Controller.Direction != Direction.Reverse) return true;
             if (Controller.Progress < 0f) return false;
             if (Controller.Direction != Direction.Stopped) return false;
 

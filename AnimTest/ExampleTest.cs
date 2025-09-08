@@ -34,6 +34,34 @@ public class Tests
     }
 
     [Test]
+    public void OpacityTest()
+    {
+        var opacity = 0f;
+        var controller = new AnimationController();
+        var tween = new TweenFloat(
+            0f,
+            1f,
+            Curves.EaseInOutCubic
+        );
+        var clip = new AnimationClip<float>(controller, tween, v => opacity = v);
+
+        clip.Forward();
+
+        while (!clip.IsCompleted)
+        {
+            clip.Update(0.033f);
+            Console.WriteLine(opacity);
+        }
+        
+        clip.Reverse();
+        while (!clip.IsCompleted)
+        {
+            clip.Update(0.033f);
+            Console.WriteLine(opacity);
+        }
+    }
+
+    [Test]
     public void ColorTest()
     {
         var vector = new Vector4();
